@@ -44,3 +44,12 @@ http://localhost:8000/api/v1/health
 
 Metrics:
 http://localhost:8000/api/v1/metrics
+
+
+6. Gmail development environment variables for backend
+
+Add these to backend/.env before starting the backend if you want Inbox Scan:
+
+SPAM_GOOGLE_CLIENT_ID=your-google-oauth-client-id
+SPAM_GOOGLE_CLIENT_SECRET=your-google-oauth-client-secret
+SPAM_GOOGLE_REDIRECT_URI=http://localhost:3000/inbox

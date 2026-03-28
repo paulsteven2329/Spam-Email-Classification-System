@@ -54,3 +54,44 @@ class MetricsResponse(BaseModel):
     label_counts: dict[str, int]
     average_confidence: float
     average_risk_score: float
+
+
+class GmailAuthUrlResponse(BaseModel):
+    auth_url: str
+    redirect_uri: str
+    scopes: list[str]
+
+
+class GmailCodeExchangeRequest(BaseModel):
+    code: str
+    redirect_uri: str | None = None
+
+
+class GmailTokenResponse(BaseModel):
+    access_token: str
+    refresh_token: str | None = None
+    scope: str
+    token_type: str
+    expires_in: int
+
+
+class GmailScanRequest(BaseModel):
+    access_token: str
+    max_results: int = Field(default=10, ge=1, le=25)
+    query: str | None = None
+
+
+class GmailScannedMessage(BaseModel):
+    gmail_message_id: str
+    thread_id: str
+    sender: str
+    subject: str
+    snippet: str
+    received_at: str | None = None
+    prediction: PredictionResponse
+
+
+class GmailScanResponse(BaseModel):
+    messages: list[GmailScannedMessage]
+    scanned_count: int
+    flagged_count: int

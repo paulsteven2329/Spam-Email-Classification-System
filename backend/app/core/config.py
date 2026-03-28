@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parents[2]
 
 
 class Settings(BaseSettings):
-    app_name: str = "Private Spam Email Classification System"
+    app_name: str = "KnightX Shield API"
     environment: str = "development"
     api_prefix: str = "/api/v1"
     log_level: str = "INFO"
@@ -20,6 +20,9 @@ class Settings(BaseSettings):
     max_email_chars: int = 20000
     enable_metrics: bool = True
     tls_required: bool = False
+    google_client_id: str = ""
+    google_client_secret: str = Field(default="", repr=False)
+    google_redirect_uri: str = "http://localhost:3000/inbox"
 
     model_config = SettingsConfigDict(
         env_file=BASE_DIR / ".env",

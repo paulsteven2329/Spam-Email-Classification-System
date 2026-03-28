@@ -6,10 +6,16 @@ from app.schemas.email import (
     BatchEmailRequest,
     BatchPredictionResponse,
     EmailRequest,
+    GmailAuthUrlResponse,
+    GmailCodeExchangeRequest,
+    GmailScanRequest,
+    GmailScanResponse,
+    GmailTokenResponse,
     HealthResponse,
     MetricsResponse,
     PredictionResponse,
 )
+from app.services.gmail_service import gmail_service
 from app.services.prediction_service import prediction_service
 
 
@@ -31,6 +37,29 @@ def predict_email(request: EmailRequest) -> PredictionResponse:
 def batch_predict(request: BatchEmailRequest) -> BatchPredictionResponse:
     results = [prediction_service.predict(email) for email in request.emails]
     return BatchPredictionResponse(results=results)
+
+
+@router.get("/gmail/auth_url", response_model=GmailAuthUrlResponse)
+def gmail_auth_url(redirect_uri: str | None = None) -> GmailAuthUrlResponse:
+    return GmailAuthUrlResponse(**gmail_service.build_auth_url(redirect_uri))
+
+
+@router.post("/gmail/exchange_code", response_model=GmailTokenResponse)
+def gmail_exchange_code(request: GmailCodeExchangeRequest) -> GmailTokenResponse:
+    return GmailTokenResponse(
+        **gmail_service.exchange_code(request.code, request.redirect_uri)
+    )
+
+
+@router.post("/gmail/scan", response_model=GmailScanResponse)
+def gmail_scan(request: GmailScanRequest) -> GmailScanResponse:
+    return GmailScanResponse(
+        **gmail_service.scan_inbox(
+            access_token=request.access_token,
+            max_results=request.max_results,
+            query=request.query,
+        )
+    )
 
 
 @router.get("/health", response_model=HealthResponse)

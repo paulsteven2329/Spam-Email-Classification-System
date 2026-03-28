@@ -1,28 +1,31 @@
 Backend API Test Commands
 
-Base URL:
+Production Base URL:
+https://spam-email-classification-system.onrender.com/api/v1
+
+Local Base URL:
 http://localhost:8000/api/v1
 
 
 1. Health Check
 
-curl --location 'http://localhost:8000/api/v1/health'
+curl --location 'https://spam-email-classification-system.onrender.com/api/v1/health'
 
 
 2. Get Auth Token
 
-curl --location --request POST 'http://localhost:8000/api/v1/auth/token'
+curl --location --request POST 'https://spam-email-classification-system.onrender.com/api/v1/auth/token'
 
 
 3. Predict Single Email
 
-curl --location 'http://localhost:8000/api/v1/predict' \
+curl --location 'https://spam-email-classification-system.onrender.com/api/v1/predict' \
 --header 'Content-Type: application/json' \
 --data '{
   "subject": "Urgent password verification required",
   "body": "Click here to verify your bank account password immediately to avoid suspension.",
   "metadata": {
-    "source": "postman",
+    "source": "postman_production",
     "sender": "alerts@example.com"
   }
 }'
@@ -30,7 +33,7 @@ curl --location 'http://localhost:8000/api/v1/predict' \
 
 4. Predict Batch Emails
 
-curl --location 'http://localhost:8000/api/v1/batch_predict' \
+curl --location 'https://spam-email-classification-system.onrender.com/api/v1/batch_predict' \
 --header 'Content-Type: application/json' \
 --data '{
   "emails": [
@@ -38,14 +41,14 @@ curl --location 'http://localhost:8000/api/v1/batch_predict' \
       "subject": "Team meeting reminder",
       "body": "Please join the project meeting at 10 AM tomorrow.",
       "metadata": {
-        "source": "postman"
+        "source": "postman_production"
       }
     },
     {
       "subject": "You are a winner",
       "body": "Claim your free gift card now. Limited time offer.",
       "metadata": {
-        "source": "postman"
+        "source": "postman_production"
       }
     }
   ]
@@ -54,7 +57,7 @@ curl --location 'http://localhost:8000/api/v1/batch_predict' \
 
 5. Metrics Without Token
 
-curl --location 'http://localhost:8000/api/v1/metrics'
+curl --location 'https://spam-email-classification-system.onrender.com/api/v1/metrics'
 
 
 6. Metrics With Token
@@ -65,7 +68,7 @@ Run the auth token request above and copy the access_token value.
 Step 2:
 Replace YOUR_TOKEN_HERE below.
 
-curl --location 'http://localhost:8000/api/v1/metrics' \
+curl --location 'https://spam-email-classification-system.onrender.com/api/v1/metrics' \
 --header 'Authorization: Bearer YOUR_TOKEN_HERE'
 
 
@@ -74,3 +77,4 @@ curl --location 'http://localhost:8000/api/v1/metrics' \
 - Import each curl command into Postman using Import -> Raw Text
 - For the token-protected metrics request, first run the auth token request
 - Copy the returned access_token into the Authorization header
+- To test locally instead of production, replace the production base URL with the local base URL above

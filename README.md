@@ -46,8 +46,29 @@ flutter run -d android --dart-define=API_BASE_URL=http://10.0.2.2:8000/api/v1
 - `POST /api/v1/auth/token`
 - `POST /api/v1/predict`
 - `POST /api/v1/batch_predict`
+- `GET /api/v1/gmail/auth_url`
+- `POST /api/v1/gmail/exchange_code`
+- `POST /api/v1/gmail/scan`
 - `GET /api/v1/health`
 - `GET /api/v1/metrics`
+
+## Gmail Development Setup
+
+For read-only Gmail inbox scanning in development:
+
+1. Create a Google Cloud OAuth client.
+2. Add a redirect URI such as `http://localhost:3000/inbox` for local web testing.
+3. Configure these backend environment variables:
+
+```bash
+SPAM_GOOGLE_CLIENT_ID=your-google-oauth-client-id
+SPAM_GOOGLE_CLIENT_SECRET=your-google-oauth-client-secret
+SPAM_GOOGLE_REDIRECT_URI=http://localhost:3000/inbox
+```
+
+The Flutter app includes an `Inbox Scan` screen that generates a Google auth URL,
+accepts the returned authorization code, exchanges it on the backend, and scans
+recent Gmail messages using your existing spam/phishing classifier.
 
 ## Security Notes
 
