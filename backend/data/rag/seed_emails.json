@@ -1,0 +1,26 @@
+[
+  {
+    "label": "ham",
+    "subject": "Q4 Budget Review",
+    "body": "Attached is the approved Q4 budget deck for tomorrow's steering committee review.",
+    "explanation": "Routine internal budgeting email with clear business context and no coercive language."
+  },
+  {
+    "label": "spam",
+    "subject": "Limited Time Offer",
+    "body": "Free membership, exclusive rewards, and urgent savings if you act now.",
+    "explanation": "Promotional urgency and reward-heavy wording match bulk spam patterns."
+  },
+  {
+    "label": "phishing",
+    "subject": "Security Verification Needed",
+    "body": "Your bank account will be suspended unless you verify your password immediately.",
+    "explanation": "Credential request plus account pressure indicates a likely phishing attempt."
+  },
+  {
+    "label": "phishing",
+    "subject": "Wire Transfer Approval",
+    "body": "Please process this urgent wire transfer and confirm once completed.",
+    "explanation": "Unexpected transfer instructions are common in financial phishing and BEC attacks."
+  }
+]

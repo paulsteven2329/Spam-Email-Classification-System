@@ -1,0 +1,76 @@
+Backend API Test Commands
+
+Base URL:
+http://localhost:8000/api/v1
+
+
+1. Health Check
+
+curl --location 'http://localhost:8000/api/v1/health'
+
+
+2. Get Auth Token
+
+curl --location --request POST 'http://localhost:8000/api/v1/auth/token'
+
+
+3. Predict Single Email
+
+curl --location 'http://localhost:8000/api/v1/predict' \
+--header 'Content-Type: application/json' \
+--data '{
+  "subject": "Urgent password verification required",
+  "body": "Click here to verify your bank account password immediately to avoid suspension.",
+  "metadata": {
+    "source": "postman",
+    "sender": "alerts@example.com"
+  }
+}'
+
+
+4. Predict Batch Emails
+
+curl --location 'http://localhost:8000/api/v1/batch_predict' \
+--header 'Content-Type: application/json' \
+--data '{
+  "emails": [
+    {
+      "subject": "Team meeting reminder",
+      "body": "Please join the project meeting at 10 AM tomorrow.",
+      "metadata": {
+        "source": "postman"
+      }
+    },
+    {
+      "subject": "You are a winner",
+      "body": "Claim your free gift card now. Limited time offer.",
+      "metadata": {
+        "source": "postman"
+      }
+    }
+  ]
+}'
+
+
+5. Metrics Without Token
+
+curl --location 'http://localhost:8000/api/v1/metrics'
+
+
+6. Metrics With Token
+
+Step 1:
+Run the auth token request above and copy the access_token value.
+
+Step 2:
+Replace YOUR_TOKEN_HERE below.
+
+curl --location 'http://localhost:8000/api/v1/metrics' \
+--header 'Authorization: Bearer YOUR_TOKEN_HERE'
+
+
+7. Postman Notes
+
+- Import each curl command into Postman using Import -> Raw Text
+- For the token-protected metrics request, first run the auth token request
+- Copy the returned access_token into the Authorization header

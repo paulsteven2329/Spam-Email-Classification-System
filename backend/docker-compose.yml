@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    container_name: spam-email-api
+    ports:
+      - "8000:8000"
+    environment:
+      SPAM_SECRET_KEY: "replace-with-enterprise-secret"
+      SPAM_ENVIRONMENT: "production"
+    restart: unless-stopped

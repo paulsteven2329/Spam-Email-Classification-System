@@ -1,0 +1,22 @@
+Frontend Manual Run Commands
+
+1. Open a terminal in the project root
+
+2. Run the Flutter web app
+
+cd frontend
+flutter pub get
+flutter run -d chrome --dart-define=API_BASE_URL=http://localhost:8000/api/v1
+
+
+3. Run the Flutter Android app
+
+cd frontend
+flutter pub get
+flutter run -d android --dart-define=API_BASE_URL=http://10.0.2.2:8000/api/v1
+
+
+4. Optional checks
+
+cd frontend
+flutter analyze

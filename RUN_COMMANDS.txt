@@ -1,0 +1,46 @@
+Spam Email Classification System - Manual Run Commands
+
+1. Backend setup and run
+
+Open a terminal in the project root, then run:
+
+cd backend
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python scripts/train_classifier.py
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+
+
+2. Frontend setup and run for Web
+
+Open a second terminal in the project root, then run:
+
+cd frontend
+flutter pub get
+flutter run -d chrome --dart-define=API_BASE_URL=http://localhost:8000/api/v1
+
+
+3. Frontend run for Android emulator
+
+cd frontend
+flutter pub get
+flutter run -d android --dart-define=API_BASE_URL=http://10.0.2.2:8000/api/v1
+
+
+4. Optional backend Docker run
+
+cd backend
+docker compose up --build
+
+
+5. API URLs
+
+Root API:
+http://localhost:8000/api/v1
+
+Health check:
+http://localhost:8000/api/v1/health
+
+Metrics:
+http://localhost:8000/api/v1/metrics

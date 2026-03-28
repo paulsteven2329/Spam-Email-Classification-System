@@ -1,0 +1,26 @@
+name: spam_email_frontend
+description: Enterprise spam email classification frontend for web and Android.
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  flutter_riverpod: ^2.6.1
+  dio: ^5.7.0
+  go_router: ^14.6.2
+  flutter_secure_storage: ^9.2.2
+  shared_preferences: ^2.3.3
+  intl: ^0.20.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true

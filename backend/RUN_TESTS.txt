@@ -1,0 +1,23 @@
+Backend Test Commands
+
+1. Open a terminal in the project root
+
+2. Set up the backend environment
+
+cd backend
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+pip install pytest
+
+
+3. Run all backend tests
+
+cd backend
+pytest -v
+
+
+4. Run only API tests
+
+cd backend
+pytest -v tests/test_api.py
